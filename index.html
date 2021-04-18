@@ -11,16 +11,21 @@
   <body>
     <div id="landingPage">
       <h1>Music Quiz</h1>
-      <p>Click the correct answer</p>
-      <button id="startButton">Start</button>
+      <p>
+        A series of questions will show up on the screen. Click the correct
+        answer. At the end you will be given a score and a chance to save your
+        score. Click "START" to begin the quiz.
+      </p>
+      <button id="startButton">START</button>
     </div>
 
     <div id="quizPage" class="hide">
       <h1 id="question"></h1>
-      <button class="answerButton" id="answerBtn1"></button>
-      <button class="answerButton" id="answerBtn2"></button>
-      <button class="answerButton" id="answerBtn3"></button>
-      <button class="answerButton" id="answerBtn4"></button>
+      <button class="answerButton" id="answerBtn1">A</button>
+      <button class="answerButton" id="answerBtn2">B</button>
+      <button class="answerButton" id="answerBtn3">C</button>
+      <button class="answerButton" id="answerBtn4">D</button>
+      <p id="countdown"></p>
     </div>
 
     <div id="scorePage" class="hide">
