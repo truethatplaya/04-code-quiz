@@ -136,26 +136,28 @@ function startTimer() {
 
 function selectAnswer(answer) {
   debugger;
-  var currentQuiz = quizQuestions[quizIndex];
 
   if (quizIndex === quizQuestions.length - 1) {
+    checkAnswer(answer);
     clearInterval(timerInterval);
     timeLeft = 0;
     sendGameOverMessage();
     quizIndex = 0;
-  } else if (answer === currentQuiz.correctAnswer) {
+  } else {
+    checkAnswer(answer);
+  }
+}
+
+function checkAnswer(answer) {
+  var currentQuiz = quizQuestions[quizIndex];
+
+  if (answer === currentQuiz.correctAnswer) {
+    scoreAnswer();
     // only move to next question if there is one available
     if (quizIndex < quizQuestions.length - 1) {
       quizIndex += 1;
       showQuiz(quizIndex);
     }
-
-    localStorage.getItem("user");
-
-    user.score = Number(user.score);
-    user.score += 20;
-    Number(user.score);
-    localStorage.setItem("user", JSON.stringify(user));
     //
   } else {
     timeLeft -= 10;
@@ -165,8 +167,16 @@ function selectAnswer(answer) {
       sendGameOverMessage();
       clearInterval(timerInterval);
     }
-    // wrong stuff
   }
+}
+
+function scoreAnswer() {
+  localStorage.getItem("user");
+
+  user.score = Number(user.score);
+  user.score += 20;
+  Number(user.score);
+  localStorage.setItem("user", JSON.stringify(user));
 }
 
 //game over message function and restart game
