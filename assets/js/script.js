@@ -1,7 +1,4 @@
 var quizContainer = document.getElementById("quiz");
-var resultsContainer = document.getElementById("results");
-var submitButton = document.getElementById("submit");
-var startButton = document.getElementById("startButton");
 var quizPage = document.getElementById("quizPage");
 var landingPage = document.getElementById("landingPage");
 var question = document.getElementById("question");
@@ -22,12 +19,6 @@ var user = {
 };
 localStorage.setItem("user", "");
 // localStorage.setItem("userInitials");
-
-// made this into and object to be able to use it in a function
-var gameOverPrompt = {
-  name: "gameOverPrompt",
-  prompt: "You ran out of time. Would you like to start over?",
-};
 
 //quiz questions
 var quizQuestions = [
@@ -84,34 +75,10 @@ var quizQuestions = [
   },
 ];
 
+// start playing the game
 function play() {
-  debugger;
   startGame(); // start timer
   var answer = showQuiz(quizIndex);
-
-  // play game (X)
-  // start timer (X)
-
-  // for each question (X)
-  // show answers (X)
-
-  // if correct answer (X)
-  //  - show correct answer message
-  //  - score +
-  //  - move to next
-  //  - update score local storage
-  // if wrong answer (X)
-  //   - minus time
-  //   - incorrect answer message
-  // move to next
-
-  // if time is out - stop game (X)
-
-  // end game stuff
-  //  - game over mesg if fail?
-  //  - display user score
-  //  - save user initials + score to display
-  // restart game
 }
 
 // TIMER
@@ -135,8 +102,6 @@ function startTimer() {
 }
 
 function selectAnswer(answer) {
-  debugger;
-
   if (quizIndex === quizQuestions.length - 1) {
     checkAnswer(answer);
     clearInterval(timerInterval);
@@ -180,8 +145,6 @@ function scoreAnswer() {
 }
 
 //game over message function and restart game
-//NOT sure what I am doing here. I want a game over prompt to show up and tell the user the game is over
-//then I want to hide the quiz and the game to start over
 function sendGameOverMessage() {
   quizPage.classList.add("hide");
   timerEl.classList.add("hide");
@@ -193,7 +156,6 @@ function sendGameOverMessage() {
 
 //save user initials
 function saveUserInitials() {
-  debugger;
   // get user from localStorage
   localStorage.getItem("user", JSON.stringify(user));
   // get value from input
@@ -208,7 +170,6 @@ function saveUserInitials() {
 // captures user input in local storage
 function displayHighScores() {
   var userData = JSON.parse(localStorage.getItem("user"));
-  console.log(userData);
 
   var userNameInput = document.getElementById("userNameSpan");
   userNameInput.textContent = user.name;
@@ -239,7 +200,6 @@ function restartGame() {
 
 // show quiz function, this will grab the question and answer text from the array above
 function showQuiz(quizIndex) {
-  debugger;
   var quiz = quizQuestions[quizIndex];
 
   var questionArea = document.getElementById("question");
@@ -254,14 +214,6 @@ function showQuiz(quizIndex) {
   answerBox4.textContent = quiz.answers.d;
 }
 
-// need logic for correct and wrong answers
-
-// show results of the quiz
-// function showResults() {}
-
-//on submit, show the results
-// submitButton.addEventlistener("click", showResults);
-
 //on start, show quiz questions, start timer, hide landing page
 function startGame() {
   startTimer();
@@ -269,19 +221,3 @@ function startGame() {
   quizPage.classList.remove("hide");
   timerEl.classList.remove("hide");
 }
-
-// startButton.addEventListener("click", function () {
-//   showQuiz();
-//   startTimer();
-//   landingPage.classList.add("hide");
-//   quizPage.classList.remove("hide");
-// });
-
-// restartGameBtn.addEventListener("click", function () {
-//   restartGame();
-//   clearInterval(timerInterval);
-// });
-
-//NOTES
-// showQuiz(); - when this is in global scope this will start on load of page
-//TODO:make a note tab. look up in Google
