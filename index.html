@@ -9,30 +9,66 @@
     <title>Music Triva</title>
   </head>
   <body>
-    <div id="landingPage">
-      <h1>Music Quiz</h1>
-      <p>
-        A series of questions will show up on the screen. Click the correct
-        answer. At the end you will be given a score and a chance to save your
-        score. Click "START" to begin the quiz.
-      </p>
-      <button id="startButton">START</button>
+    <!-- CONTAINER TO USE WITH CSS -->
+    <div class="container">
+      <!-- LANDING PAGE -->
+      <div id="landingPage">
+        <h1>Music Quiz</h1>
+        <p>
+          A series of questions will show up on the screen. Click the correct
+          answer. At the end you will be given a score and a chance to save your
+          score. Click "START" to begin the quiz.
+        </p>
+        <button id="startButton" onclick="{{play()}}">START</button>
+      </div>
+
+      <!-- QUIZ PAGE -->
+      <div id="quizPage" class="hide">
+        <h1 id="question">Question</h1>
+        <div id="answerBtns" class="btnGrid">
+          <button class="btn" id="answerBtn1" onclick="selectAnswer('a') ">
+            Answer 1
+          </button>
+          <button class="btn" id="answerBtn2" onclick="selectAnswer('b')">
+            Answer 2
+          </button>
+          <button class="btn" id="answerBtn3" onclick="selectAnswer('c')">
+            Answer 3
+          </button>
+          <button class="btn" id="answerBtn4" onclick="selectAnswer('d')">
+            Answer 4
+          </button>
+
+          <!-- <button class="btn hide" id="nextQuestionBtn">Next Question</button> -->
+          -->
+        </div>
+      </div>
+
+      <button class="restartBtn hide" id="restartGameBtn">Restart</button>
+
+      <!-- COUNTDOWN TIMER -->
+      <div id="countdown"></div>
+
+      <!-- SCORE PAGE -->
+      <div id="scorePage" class="hide">
+        <div id="quiz"></div>
+        <button id="submit">Submit</button>
+        <div id="results"></div>
+      </div>
+
+      <div id="userNameInput" class="hide">
+        <label for="userName">First name:</label><br />
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="initials"
+        /><br />
+        <input type="submit" value="submit" onclick="saveUserInitials()" />
+      </div>
     </div>
 
-    <div id="quizPage" class="hide">
-      <h1 id="question"></h1>
-      <button class="answerButton" id="answerBtn1">A</button>
-      <button class="answerButton" id="answerBtn2">B</button>
-      <button class="answerButton" id="answerBtn3">C</button>
-      <button class="answerButton" id="answerBtn4">D</button>
-      <p id="countdown"></p>
-    </div>
-
-    <div id="scorePage" class="hide">
-      <div id="quiz"></div>
-      <button id="submit">Submit</button>
-      <div id="results"></div>
-    </div>
+    <!-- LINK TO JAVASCRIPT-->
     <script src="/assets/js/script.js" type="text/javascript"></script>
   </body>
 </html>
