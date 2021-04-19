@@ -118,6 +118,9 @@ function play() {
 var timeLeft = 60;
 
 function startTimer() {
+  if (timeLeft < 60) {
+    timeLeft = 60;
+  }
   timerInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent =
@@ -135,15 +138,16 @@ function selectAnswer(answer) {
   debugger;
   var currentQuiz = quizQuestions[quizIndex];
 
-  // check if correct
-  if (answer === currentQuiz.correctAnswer) {
+  if (quizIndex === quizQuestions.length - 1) {
+    clearInterval(timerInterval);
+    timeLeft = 0;
+    sendGameOverMessage();
+    quizIndex = 0;
+  } else if (answer === currentQuiz.correctAnswer) {
     // only move to next question if there is one available
     if (quizIndex < quizQuestions.length - 1) {
       quizIndex += 1;
       showQuiz(quizIndex);
-    } else if (quizIndex === quizQuestions.length - 1) {
-      sendGameOverMessage();
-      clearInterval(timerInterval);
     }
 
     localStorage.getItem("user");
@@ -170,13 +174,14 @@ function selectAnswer(answer) {
 //then I want to hide the quiz and the game to start over
 function sendGameOverMessage() {
   quizPage.classList.add("hide");
-  timerEl.textContent = "Game Over";
+  timerEl.classList.add("hide");
   var restart = document.getElementById("restartGameBtn");
   restart.classList.remove("hide");
   var userNameInput = document.getElementById("userNameInput");
   userNameInput.classList.remove("hide");
 }
 
+//save user initials
 function saveUserInitials() {
   debugger;
   // get user from localStorage
@@ -187,14 +192,39 @@ function saveUserInitials() {
   user.name = userName;
   // save to localStorage (JSON.Stringify(user))
   localStorage.setItem("user", JSON.stringify(user));
+  showHighScorePage();
+}
+
+// captures user input in local storage
+function displayHighScores() {
+  var userData = JSON.parse(localStorage.getItem("user"));
+  console.log(userData);
+
+  var userNameInput = document.getElementById("userNameSpan");
+  userNameInput.textContent = user.name;
+
+  var userScoreInput = document.getElementById("userScoreSpan");
+  userScoreInput.textContent = user.score;
+}
+
+//show HIGH SCORE PAGE
+function showHighScorePage() {
+  displayHighScores();
+  var userNameInput = document.getElementById("userNameInput");
+  userNameInput.classList.add("hide");
+  var showHighScore = document.getElementById("highScorePage");
+  showHighScore.classList.remove("hide");
 }
 
 // restart function
 function restartGame() {
+  var showHighScore = document.getElementById("highScorePage");
+  showHighScore.classList.add("hide");
   landingPage.classList.remove("hide");
   quizPage.classList.add("hide");
+
   clearInterval(timerInterval);
-  timeLeft = 60;
+  user.score = 0;
 }
 
 // show quiz function, this will grab the question and answer text from the array above
@@ -227,6 +257,7 @@ function startGame() {
   startTimer();
   landingPage.classList.add("hide");
   quizPage.classList.remove("hide");
+  timerEl.classList.remove("hide");
 }
 
 // startButton.addEventListener("click", function () {

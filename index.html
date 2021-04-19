@@ -40,31 +40,35 @@
           </button>
 
           <!-- <button class="btn hide" id="nextQuestionBtn">Next Question</button> -->
-          -->
         </div>
       </div>
-
-      <button class="restartBtn hide" id="restartGameBtn">Restart</button>
 
       <!-- COUNTDOWN TIMER -->
       <div id="countdown"></div>
 
-      <!-- SCORE PAGE -->
-      <div id="scorePage" class="hide">
-        <div id="quiz"></div>
-        <button id="submit">Submit</button>
-        <div id="results"></div>
-      </div>
-
       <div id="userNameInput" class="hide">
-        <label for="userName">First name:</label><br />
+        <h2>GAME OVER</h2>
+        <h3>Enter your initals below to see your score.</h3>
         <input
           type="text"
           id="userName"
           name="userName"
-          placeholder="initials"
+          placeholder="initals"
         /><br />
         <input type="submit" value="submit" onclick="saveUserInitials()" />
+      </div>
+
+      <!-- HIGH SCORE PAGE -->
+      <div id="highScorePage" class="hide">
+        <label>Name: <span id="userNameSpan"></span></label>
+        <label>Score: <span id="userScoreSpan"></span></label>
+        <button
+          class="restartBtn hide"
+          id="restartGameBtn"
+          onclick="restartGame()"
+        >
+          Restart
+        </button>
       </div>
     </div>
 
