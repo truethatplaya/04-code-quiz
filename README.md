@@ -32,7 +32,7 @@ THEN I can save my initials and my score
 
 ## Screenshot
 
-[Go to a screenshot of quiz](./Assets/password-generator-screenshot.png)
+[Go to a screenshot of quiz](./assets/images/music-quiz-screenshot.png)
 
 ## Link to deploy quiz in the browser
 

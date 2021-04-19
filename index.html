@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
 
     <title>Music Triva</title>
   </head>
@@ -15,10 +17,13 @@
       <div id="landingPage">
         <h1>Music Quiz</h1>
         <p>
-          A series of questions will show up on the screen. Click the correct
-          answer. At the end you will be given a score and a chance to save your
-          score. Click "START" to begin the quiz.
+          A series of questions will show up on the screen.<br />
+          Click the correct answer. At the end you will be given a score and a
+          chance to save your score.
         </p>
+
+        <p>Click "START" to begin the quiz.</p>
+
         <button id="startButton" onclick="{{play()}}">START</button>
       </div>
 
@@ -45,28 +50,43 @@
       <div id="countdown"></div>
 
       <div id="userNameInput" class="hide">
-        <h2>GAME OVER</h2>
-        <h3>Enter your initals below to see your score.</h3>
+        <h1>GAME OVER</h1>
+        <p>Enter your initals below to see your score.</p>
         <input
           type="text"
           id="userName"
           name="userName"
           placeholder="initals"
-        /><br />
-        <input type="submit" value="submit" onclick="saveUserInitials()" />
+        />
+        <br /><br />
+        <input
+          type="submit"
+          value="submit"
+          onclick="saveUserInitials()"
+          id="submitBtn"
+        />
       </div>
 
       <!-- HIGH SCORE PAGE -->
       <div id="highScorePage" class="hide">
-        <label>Name: <span id="userNameSpan"></span></label>
-        <label>Score: <span id="userScoreSpan"></span></label>
-        <button
-          class="restartBtn hide"
-          id="restartGameBtn"
-          onclick="restartGame()"
-        >
-          Restart
-        </button>
+        <h1>HIGH SCORE</h1>
+        <ul>
+          <li>
+            <label>Name: <span id="userNameSpan"></span></label>
+          </li>
+          <li>
+            <label>Score: <span id="userScoreSpan"></span></label>
+          </li>
+        </ul>
+        <p>
+          <button
+            class="restartBtn hide"
+            id="restartGameBtn"
+            onclick="restartGame()"
+          >
+            Restart
+          </button>
+        </p>
       </div>
     </div>
 
