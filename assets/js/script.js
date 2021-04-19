@@ -12,13 +12,13 @@ var nextQuestionBtn = document.getElementById("nextQuestionBtn");
 var restartGameBtn = document.getElementById("restartGameBtn");
 var timerInterval;
 var quizIndex = 0;
+// localStorage.setItem("userInitials");
 var correctAnswer;
 var user = {
   name: "",
   score: 0,
 };
 localStorage.setItem("user", "");
-// localStorage.setItem("userInitials");
 
 //quiz questions
 var quizQuestions = [
@@ -221,3 +221,24 @@ function startGame() {
   quizPage.classList.remove("hide");
   timerEl.classList.remove("hide");
 }
+
+//-------EVERYTHING BELOW THIS LINE IS A WORK IN PROGRESS------
+
+// function renderLastHighScore() {
+//   // Use JSON.parse() to convert text to JavaScript object
+//   var lastHighScore = JSON.parse(localStorage.getItem("user"));
+//   // Check if data is returned, if not exit out of the function
+//   if (lastHighScore !== null) {
+//     document.getElementById("userNameSpan").innerHTML = user.name;
+//     document.getElementById("userScoreSpan").innerHTML = user.score;
+//   } else {
+//     return;
+//   }
+// }
+// var highScoresBtn = document.getElementById("highScores");
+
+// highScoresBtn.addEventListener("click", function (event) {
+//   event.preventDefault();
+//   displayHighScores();
+//   renderLastHighScore();
+// });
